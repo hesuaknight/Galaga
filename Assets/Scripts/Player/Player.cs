@@ -7,17 +7,19 @@ public class Player : MonoBehaviour {
     public float speed;
 
     PlayerController controller;
-    Weapon weapon;
+    private Weapon _weapon;
+
+    public Weapon weapon { get { return _weapon; } set { _weapon = value; } }
 
 	void Start () {
         controller = new KeyboardCtrl(this);
-        weapon = new WeaponStandard(controller.fireKey, this.transform, 0.35f);
+        _weapon = new WeaponStandard(controller.fireKey, this.transform, 0.35f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         controller.Update();
-        weapon.Update();
+        _weapon.Update();
 	}
 
     public void Move(Vector3 dir) {
