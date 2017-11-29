@@ -6,5 +6,7 @@ public class MouseCtrl : PlayerController {
     public MouseCtrl(Player ship) : base(ship) {
         _axisMovement = "Mouse X";
         _fireAttack = KeyCode.Mouse0;
+
+        Cursor.visible = false;
     }
 }

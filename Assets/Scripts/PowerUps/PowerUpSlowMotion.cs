@@ -11,7 +11,7 @@ public class PowerUpSlowMotion : MonoBehaviour, IPowerUp {
     {
         slowImage = GameObject.Find("SlowMotionImage").GetComponent<Image>();
         slowImage.GetComponentInParent<Image>().enabled = true;
-        player.StartCoroutine(SlowMotion());
+        StartCoroutine(SlowMotion());
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         t = timeDurationEffect;

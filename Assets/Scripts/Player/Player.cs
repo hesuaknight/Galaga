@@ -3,7 +3,8 @@
 public class Player : MonoBehaviour {
 
     public float speed;
-    PlayerController controller;
+    private PlayerController _controller;
+    public PlayerController controller {set { _controller = value; } }
     public LifeController lifeController;
     public Transform shootPoint;
     private Weapon _weapon;
@@ -18,14 +19,14 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
-        controller = new KeyboardCtrl(this);
-        _weapon = new WeaponStandard(controller.fireKey, this.transform, 0.35f);
+        //_controller = new KeyboardCtrl(this);
+        _weapon = new WeaponStandard(_controller.fireKey, this.transform, 0.35f);
         _checkPoint = new CheckPoint(transform.position, _weapon);
     }
 
     // Update is called once per frame
     void Update() {
-        controller.Update();
+        _controller.Update();
         _weapon.Update();
     }
 
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour {
     }
 
     public void LoadCheckPoint() {
+        lifeController.RestoreLife();
         _checkPoint.LoadCheckPoint(this);
     }
 }

@@ -18,4 +18,8 @@ public class LifeController {
 
         }
     }
+
+    public void RestoreLife() {
+        currentLife = maxLife;
+    }
 }
