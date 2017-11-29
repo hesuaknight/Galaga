@@ -45,7 +45,8 @@ public class PowerUpSlowMotion : MonoBehaviour, IPowerUp {
         if (c.transform.tag == "Player")
         {
             OnTakePowerUP(c.gameObject.GetComponent<Player>());
-        }
+        } else if (c.gameObject.tag == "Wall")
+            Destroy(gameObject);
     }
     private void RemovePowerUp()
     {

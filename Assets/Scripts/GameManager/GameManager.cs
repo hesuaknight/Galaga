@@ -4,21 +4,25 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public GameObject level1Enemy;
+    public GameObject winPanel;
     private GameObject[]players;
     public GameObject[] powerUps;
     public static GameManager instance;
 
+    public GameStatus gameStatus;
     public GameCtrl gameCtrl;
 
     private void Awake()
     {
         instance = this;
         players = GameObject.FindGameObjectsWithTag("Player");
+        gameStatus = new GameStatus();
     }
 
     private void Start()
     {
         GridFormationRoot.instance.CreateGrid(level1Enemy);
+
     }
 
     private void Update()
@@ -42,5 +46,19 @@ public class GameManager : MonoBehaviour {
             GameObject.Find("LifeP1").GetComponent<Text>().text = "P1 LIFE : " + p1.lifeController.currentLife + " / " + p1.lifeController.maxLife;
             GameObject.Find("LifeP2").GetComponent<Text>().text = "P2 LIFE : " + p2.lifeController.currentLife + " / " + p2.lifeController.maxLife;
         }
+    }
+
+    public void EnemyAlive() {
+        gameStatus.enemyAliveCount++;
+    }
+
+    public void EnemyDie() {
+        //Debug.Log(gameStatus.enemyAliveCount);
+
+        if (gameStatus.EnemyDie() == GameStatus.CurrentGameStatus.AllEnemyDead) {
+            winPanel.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+
     }
 }

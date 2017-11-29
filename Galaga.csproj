@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\CharacterController\MouseCtrl.cs" />
     <Compile Include="Assets\Scripts\CharacterController\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Config.cs" />
+    <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyWeapon.cs" />
     <Compile Include="Assets\Scripts\Enemy\GridFormationRoot.cs" />
@@ -126,7 +127,6 @@
     <Compile Include="Assets\Scripts\Weapons\WeaponSemiAuto.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponSpread3x.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponStandard.cs" />
-    <Compile Include="Assets\Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

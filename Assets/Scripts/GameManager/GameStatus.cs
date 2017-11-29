@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStatus : MonoBehaviour {
+public class GameStatus {
 
-    public static int enemyAliveCount;
+    public int enemyAliveCount;
     public CurrentGameStatus currentStatus; public enum CurrentGameStatus { PlayerDead, NotShootOnScreen, AllEnemyDead}
     public static int shootOnScreenCount;
 
@@ -14,6 +14,7 @@ public class GameStatus : MonoBehaviour {
     {
         Players = GameObject.FindGameObjectsWithTag("Player");
     }
+
     void checkStatus()
     {
         if (Players.Length == 2 && Players[0].GetComponent<Player>().lifeController.currentLife <= 0 && Players[1].GetComponent<Player>().lifeController.currentLife <= 0)
@@ -28,6 +29,15 @@ public class GameStatus : MonoBehaviour {
         {
             currentStatus = CurrentGameStatus.NotShootOnScreen;
         }
+    }
+
+    public CurrentGameStatus EnemyDie() {
+        enemyAliveCount--;
+
+        if (enemyAliveCount <= 0)
+            currentStatus = CurrentGameStatus.AllEnemyDead;
+
+        return currentStatus;
     }
 }
 

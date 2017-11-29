@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class WeaponStandard : Weapon {
 
-    public WeaponStandard(KeyCode kcFire, Transform spawnPoint, float fireCoolDown) : base(kcFire, spawnPoint, fireCoolDown) { }
-
-    public override bool CheckTrigger() {
-        return Input.GetKeyDown(_fireKey);
-    }
+    public WeaponStandard(Func<bool> trigger, Transform spawnPoint,int shooterLayer, float fireCoolDown) : base(trigger, spawnPoint,shooterLayer, fireCoolDown) { }
 
     public override void Shoot() {
         PositionBullet(poolObject.Acquiere());

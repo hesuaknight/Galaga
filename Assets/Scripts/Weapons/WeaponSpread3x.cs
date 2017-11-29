@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponSpread3x : Weapon {
-    public WeaponSpread3x(KeyCode kcFire, Transform spawnPoint, float fireCoolDown) : base(kcFire, spawnPoint, fireCoolDown) {
-    }
 
-    public override bool CheckTrigger() {
-        return Input.GetKeyDown(_fireKey);
-    }
+    public WeaponSpread3x(Func<bool> trigger, Transform spawnPoint, int shooterLayer, float fireCoolDown) : base(trigger, spawnPoint,shooterLayer, fireCoolDown) { }
+
 
     public override void Shoot() {
         //Codigo de disparo

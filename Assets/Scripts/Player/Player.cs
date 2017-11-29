@@ -4,7 +4,7 @@ public class Player : MonoBehaviour {
 
     public float speed;
     private PlayerController _controller;
-    public PlayerController controller {set { _controller = value; } }
+    public PlayerController controller { set { _controller = value; } get { return _controller; } }
     public LifeController lifeController;
     public Transform shootPoint;
     private Weapon _weapon;
@@ -21,7 +21,14 @@ public class Player : MonoBehaviour {
 
     void Start() {
         //_controller = new KeyboardCtrl(this);
-        _weapon = new WeaponStandard(_controller.fireKey, this.transform, 0.35f);
+        //_weapon = new WeaponStandard(() => { return Input.GetKeyDown(_controller.fireKey); }, shootPoint, Constants.layerPlayer, 0.35f);
+        //_weapon = new WeaponSpread3x(() => { return Input.GetKeyDown(controller.fireKey); }, shootPoint, Constants.layerPlayer, 0.5f);
+        //_weapon = new WeaponSemiAuto(() => { return Input.GetKey(controller.fireKey); }, shootPoint, Constants.layerPlayer, 0.25f);
+
+        _weapon = new WeaponComplex(new WeaponSemiAuto(() => { return Input.GetKey(controller.fireKey); }, shootPoint, Constants.layerPlayer, 0.25f),
+                                              new WeaponSpread3x(() => { return Input.GetKey(controller.fireKey); }, shootPoint, Constants.layerPlayer, 0.5f));
+
+
         _checkPoint = new CheckPoint(transform.position, _weapon);
         _playerSubject = new PlayerSubject();
     }

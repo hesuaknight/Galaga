@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Weapon {
 
     public static ObjectPool<Bullet> poolObject = new ObjectPool<Bullet>(1, new BulletFactory());
 
     protected Transform _spawnPoint;
-    protected KeyCode _fireKey;
+    protected Func<bool> _trigger;
     protected float _timer;
     protected float _fireCoolDown;
 
+    private int _shootLayer;
+
     public float fireCoolDown { get { return _fireCoolDown; } }
 
-    public Weapon(KeyCode kcFire, Transform spawnPoint, float fireCoolDown) {
-        _fireKey = kcFire;
+    public Weapon(Func<bool> trigger, Transform spawnPoint, int shootLayer, float fireCoolDown) {
+        _trigger = trigger;
         _spawnPoint = spawnPoint;
+        _shootLayer = shootLayer;
         _timer = 0;
         this._fireCoolDown = fireCoolDown;
     }
@@ -21,7 +25,7 @@ public abstract class Weapon {
     public Weapon() { }
 
     public abstract void Shoot();
-    public abstract bool CheckTrigger();
+    public virtual bool CheckTrigger() { return _trigger(); }
     public bool canShoot() { return _timer >= _fireCoolDown; }
 
     public virtual void Update() {//Funcion a poner en el update del que poseea weapon (Enemy / Player)
@@ -35,6 +39,7 @@ public abstract class Weapon {
     protected void PositionBullet(Bullet bullet) {
         bullet.transform.position = _spawnPoint.position;
         bullet.transform.rotation = _spawnPoint.rotation;
+        bullet.gameObject.layer = _shootLayer;
     }
 }
 

@@ -4,12 +4,18 @@ public class Bullet : MonoBehaviour, IPoolObject {
 
     public float speed;
     public int dmg = 1;
+
+    Vector3 movement;
+
     private void Awake() {
         gameObject.SetActive(false);
+        movement = new Vector3();
     }
 
 	void Update () {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        movement = transform.position + transform.forward * speed * Time.deltaTime;
+        movement.z = 0;
+        transform.position = movement;
 	}
     private void OnTriggerEnter(Collider c)
     {

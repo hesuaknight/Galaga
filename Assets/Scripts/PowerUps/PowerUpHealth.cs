@@ -23,7 +23,8 @@ public class PowerUpHealth : MonoBehaviour, IPowerUp {
         if (c.transform.tag == "Player")
         {
             OnTakePowerUP(c.GetComponent<Player>());
-        }
+        } else if (c.gameObject.tag == "Wall")
+            Destroy(gameObject);
     }
 
     private void RemovePowerUp()

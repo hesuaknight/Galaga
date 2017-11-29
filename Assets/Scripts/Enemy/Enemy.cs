@@ -33,11 +33,16 @@ public class Enemy : MonoBehaviour {
             players.AddRange(pps);
         }
 
-        GameStatus.enemyAliveCount++;
+        //GameStatus.enemyAliveCount++;
         lifeController = new LifeController();
+        //lifeController.OnDeadCallBack += GameManager.instance.EnemyDie;
         lifeController.OnDeadCallBack += Die;
         startRotation = transform.eulerAngles;
         StartCoroutine(RandomTarget());
+    }
+
+    private void Start() {
+        GameManager.instance.EnemyAlive();
     }
 
     void GetRandomPowerUp()
@@ -52,7 +57,6 @@ public class Enemy : MonoBehaviour {
     public void Die()
     {
         GetRandomPowerUp();
-        GameStatus.enemyAliveCount--;
         Destroy(gameObject);
     }
 
@@ -101,8 +105,8 @@ public class Enemy : MonoBehaviour {
     void Update ()
     {
         Logic();
-
     }
+
     private void OnTriggerEnter(Collider c)
     {
         if (c.transform.tag =="Player")
@@ -116,4 +120,9 @@ public class Enemy : MonoBehaviour {
             Die();
         }
     }
+
+    private void OnDestroy() {
+        GameManager.instance.EnemyDie();
+    }
+
 }

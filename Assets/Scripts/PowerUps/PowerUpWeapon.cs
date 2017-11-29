@@ -11,19 +11,20 @@ public class PowerUpWeapon : MonoBehaviour, IPowerUp {
         float c = 0.75f;
         if (r <= a)
         {
-            player.weapon =  new WeaponStandard(KeyCode.Space, player.shootPoint, 1);
+            player.weapon = new WeaponStandard(() => { return Input.GetKeyDown(player.controller.fireKey); }, player.shootPoint, Constants.layerPlayer, 1f);
         }
         if (r > a && r <= b)
         {
-            player.weapon = new WeaponSemiAuto(KeyCode.Space, player.shootPoint, 0.25f);
+            player.weapon = new WeaponSemiAuto(() => { return Input.GetKey(player.controller.fireKey); }, player.shootPoint, Constants.layerPlayer, 0.25f);
         }
         if (r > b && r <= c)
         {
-            player.weapon = new WeaponSpread3x(KeyCode.Space, player.shootPoint, 0.5f);
-        }
-        else if(r >=c)
+            player.weapon = new WeaponSpread3x(() => { return Input.GetKeyDown(player.controller.fireKey); }, player.shootPoint, Constants.layerPlayer, 0.5f);
+
+        } else if(r >=c)
         {
-            player.weapon = new WeaponComplex(new WeaponSemiAuto(KeyCode.Space, player.shootPoint, 0.3f), new WeaponSpread3x(KeyCode.Space, player.shootPoint, 0.8f));
+            player.weapon = new WeaponComplex(new WeaponSemiAuto(() => { return Input.GetKey(player.controller.fireKey); }, player.shootPoint, Constants.layerPlayer, 0.25f),
+                                              new WeaponSpread3x(() => { return Input.GetKey(player.controller.fireKey); }, player.shootPoint, Constants.layerPlayer, 0.5f));
         }
 
         Debug.Log("POWERUP -- Player weap : " + player.weapon);
@@ -39,7 +40,8 @@ public class PowerUpWeapon : MonoBehaviour, IPowerUp {
         if (c.transform.tag == "Player")
         {
             OnTakePowerUP(c.gameObject.GetComponent<Player>());
-        }
+        } else if (c.gameObject.tag == "Wall")
+            Destroy(gameObject);
     }
 
     private void RemovePowerUp()
