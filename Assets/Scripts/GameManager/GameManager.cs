@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour {
     private GameObject[]players;
     public GameObject[] powerUps;
     public static GameManager instance;
+
+    public GameCtrl gameCtrl;
+
     private void Awake()
     {
         instance = this;
@@ -25,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
     public void CheckLifePlayersCanvas()
     {
-        if (players.Length >= 1)
+        if (players.Length == 1)
         {
             Player p1 = players[0].GetComponent<Player>();
             GameObject.Find("LifeP1").GetComponent<Text>().text = "LIFE : " + p1.lifeController.currentLife + " / " + p1.lifeController.maxLife;

@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Enemy\IFormationComponent.cs" />
     <Compile Include="Assets\Scripts\Envarioment\SimpleParalax.cs" />
     <Compile Include="Assets\Scripts\Envarioment\SimpleStart.cs" />
+    <Compile Include="Assets\Scripts\GameManager\GameCtrl.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameStatus.cs" />
     <Compile Include="Assets\Scripts\Level\Level.cs" />

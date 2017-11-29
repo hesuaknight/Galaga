@@ -107,6 +107,7 @@ public class Enemy : MonoBehaviour {
     {
         if (c.transform.tag =="Player")
         {
+            if (GameManager.instance.gameCtrl.invulnerability) return;
             c.GetComponent<Player>().lifeController.TakeDamage(Damage);
         }
         else if(c.transform.parent !=null && c.transform.parent.GetComponent<ShieldRoot>() != null)
