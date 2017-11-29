@@ -20,10 +20,16 @@ public class PowerUpDownHell : MonoBehaviour, IPowerUp {
             OnTakePowerUP(c.GetComponent<Player>());
         }
     }
-
+    private void Update()
+    {
+        Displacement();
+    }
     private void RemovePowerUp()
     {
         Destroy(this.gameObject);
     }
-
+    public void Displacement()
+    {
+        transform.position += Vector3.down * Time.deltaTime;
+    }
 }
