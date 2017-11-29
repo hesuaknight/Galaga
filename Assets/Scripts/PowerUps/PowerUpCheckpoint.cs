@@ -8,4 +8,8 @@ public class PowerUpCheckpoint : IPowerUp {
     public void OnTakePowerUP(Player player)
     {
     }
+    public void Displacement()
+    {
+
+    }
 }

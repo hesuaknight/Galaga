@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
-    public static Transform player;
-
+    public static List<GameObject > players = new List<GameObject>();
+    public Transform currentTarget;
+    private int timeChangeRandomTarget = 10;
     //Comportamiento
     public IFormationComponent iFormation;
     //vida
@@ -19,13 +22,22 @@ public class Enemy : MonoBehaviour {
 
     [Header("Drop")]
     public float chanceDrop;
+
+    [HideInInspector]
+    public Vector3 startRotation;
     private void Awake()
     {
-        if(!player)
-            player = GameObject.Find("Player").transform;
+        if(players.Count == 0)
+        {
+            var  pps = GameObject.FindGameObjectsWithTag("Player");
+            players.AddRange(pps);
+        }
+
         GameStatus.enemyAliveCount++;
         lifeController = new LifeController();
         lifeController.OnDeadCallBack += Die;
+        startRotation = transform.eulerAngles;
+        StartCoroutine(RandomTarget());
     }
 
     void GetRandomPowerUp()
@@ -59,7 +71,8 @@ public class Enemy : MonoBehaviour {
         {
             iFormation = null;
         }
-        if(transform.position.y < player.transform.position.y - 1f && iFormation != new BackToGridPositionEnemy())
+
+        if(transform.position.y < currentTarget.transform.position.y - 0.5f && iFormation != new BackToGridPositionEnemy())
         {
             iFormation = new BackToGridPositionEnemy();
             Debug.Log("Ship Mode : Back to grid position");
@@ -67,6 +80,24 @@ public class Enemy : MonoBehaviour {
 
     }
 
+    
+    IEnumerator RandomTarget()
+    {
+        while (true)
+        {
+            if (players.Count == 2)
+            {
+                currentTarget = players[Random.Range(0, 1)].transform;
+            }
+            else
+            {
+                currentTarget = players[0].transform;
+            }
+            yield return new WaitForSeconds(timeChangeRandomTarget);
+
+        }
+       
+    }
     void Update ()
     {
         Logic();
@@ -77,6 +108,11 @@ public class Enemy : MonoBehaviour {
         if (c.transform.tag =="Player")
         {
             c.GetComponent<Player>().lifeController.TakeDamage(Damage);
+        }
+        else if(c.transform.parent !=null && c.transform.parent.GetComponent<ShieldRoot>() != null)
+        {
+            c.gameObject.SetActive(false);
+            Die();
         }
     }
 }

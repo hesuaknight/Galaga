@@ -29,7 +29,10 @@ public class PowerUpWeapon : MonoBehaviour, IPowerUp {
         Debug.Log("POWERUP -- Player weap : " + player.weapon);
         RemovePowerUp();
     }
-
+    private void Update()
+    {
+        Displacement();
+    }
 
     private void OnTriggerEnter(Collider c)
     {
@@ -43,5 +46,8 @@ public class PowerUpWeapon : MonoBehaviour, IPowerUp {
     {
         Destroy(this.gameObject);
     }
-
+    public void Displacement()
+    {
+        transform.position += Vector3.down * Time.deltaTime;
+    }
 }

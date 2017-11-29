@@ -15,14 +15,15 @@ public class EnemyAttack : IFormationComponent
     public override void Action(Enemy reference)
     {
         reference.transform.parent = null;
-        Vector3   _targetPursuitPosition = Enemy.player.transform.position;
-                reference.transform.forward = Vector3.Lerp(
-                reference.transform.forward,
+        Vector3   _targetPursuitPosition = reference.currentTarget.transform.position;
+                reference.transform.up = Vector3.Lerp(
+                reference.transform.up,
                 _targetPursuitPosition - reference.transform.position ,
                 Time.deltaTime * 0.2f
                 );
-        reference.transform.localPosition += reference.transform.forward * reference.speedDisplacement * Time.deltaTime;
-        reference.transform.position = new Vector3(reference.transform.position.x,reference.transform.position.y,0);
+        reference.transform.localPosition += reference.transform.up * reference.speedDisplacement * Time.deltaTime;
+        //  reference.transform.position = new Vector3(reference.transform.position.x, 0, reference.transform.position.z);
+      //  reference.transform.rotation = new Quaternion(0, reference.transform.rotation.x, reference.transform.rotation.z,0);
     }
 }
 public class BackToGridPositionEnemy : IFormationComponent
@@ -30,7 +31,7 @@ public class BackToGridPositionEnemy : IFormationComponent
     public override void Action(Enemy reference)
     {
         reference.transform.SetParent(GridFormationRoot.instance.transform);
-        reference.transform.eulerAngles = Vector3.zero;
+        reference.transform.eulerAngles =reference.startRotation;
         reference.transform.localPosition = Vector3.MoveTowards(reference.transform.localPosition, reference.cordGrid, reference.speedDisplacement * Time.deltaTime);
     }
 }

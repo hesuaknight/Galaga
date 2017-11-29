@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPowerUp {
     void OnTakePowerUP(Player player);
-
+    void Displacement();
 }

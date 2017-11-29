@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IPoolObject {
 
     public float speed;
-
+    public int dmg = 1;
     private void Awake() {
         gameObject.SetActive(false);
     }
@@ -14,9 +14,16 @@ public class Bullet : MonoBehaviour, IPoolObject {
 	void Update () {
         transform.position += transform.forward * speed * Time.deltaTime;
 	}
-
-    private void OnCollisionEnter(Collision collision) {
-        //Codigo para restar vida a lo que le pegue.
+    private void OnTriggerEnter(Collider c)
+    {
+        if (c.transform.GetComponent<Enemy>())
+        {
+            c.transform.GetComponent<Enemy>().lifeController.TakeDamage(dmg);
+        }
+        else if (c.transform.GetComponent<IPowerUp>()!= null)
+        {
+            Destroy(c.gameObject);
+        }
         Weapon.poolObject.Release(this);
     }
 

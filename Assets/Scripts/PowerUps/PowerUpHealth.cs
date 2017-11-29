@@ -14,6 +14,10 @@ public class PowerUpHealth : MonoBehaviour, IPowerUp {
         Debug.Log("POWERUP - Life regenerato From :" + b + " to : " + player.lifeController.currentLife);
         RemovePowerUp();
     }
+    private void Update()
+    {
+        Displacement();
+    }
     private void OnTriggerEnter(Collider c)
     {
         if (c.transform.tag == "Player")
@@ -26,5 +30,9 @@ public class PowerUpHealth : MonoBehaviour, IPowerUp {
     {
         Destroy(this.gameObject);
     }
+    public void Displacement()
+    {
+        transform.position += Vector3.down * Time.deltaTime;
 
+    }
 }

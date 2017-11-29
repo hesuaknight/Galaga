@@ -9,8 +9,8 @@ public class Player : MonoBehaviour {
     public LifeController lifeController;
     public Transform shootPoint;
     private Weapon _weapon;
-
     public Weapon weapon { get { return _weapon; } set { _weapon = value; } }
+
     private void Awake()
     {
         lifeController = new LifeController();
