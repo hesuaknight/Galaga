@@ -22,7 +22,7 @@ public class SimpleStart : MonoBehaviour {
     {
         float phi = Time.time / duration * 2 * Mathf.PI;
         float amplitude = Mathf.Cos(phi) * 0.5F * limit;
-        Debug.Log(amplitude);
+        //Debug.Log(amplitude);
         l.intensity = amplitude;
 
         transform.position += new Vector3(0, -1, 0) * movementSpeed * Time.deltaTime;

@@ -7,16 +7,12 @@ public class LifeController {
     public int maxLife = 3;
     public int currentLife;
 
-    public void TakeDamage(int dmg)
-    {
-        if(currentLife - dmg <= 0)
-        {
+    public void TakeDamage(int dmg) {
+        if (currentLife - dmg <= 0) {
             currentLife = 0;
-           if(OnDeadCallBack != null) OnDeadCallBack();
+            OnDeadCallBack.Invoke();
             Debug.Log("Dead");
-        }
-        else
-        {
+        } else {
             currentLife -= dmg;
             Debug.Log("Take damaged :" + currentLife);
 
