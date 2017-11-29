@@ -128,5 +128,5 @@ MonoBehaviour:
   weapon: {fileID: 0}
   chanceAttack: 0.0001
   Damage: 1
-  chanceDrop: 1
+  chanceDrop: 0.25
   startRotation: {x: 0, y: 0, z: 0}

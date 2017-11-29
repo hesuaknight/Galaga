@@ -14,12 +14,12 @@ public class CheckPoint {
     public void SetCheckPoint(Vector3 position, Weapon weapon) {
         _position = position;
         _weapon = weapon;
-        Debug.Log("Saved!");
+        //Debug.Log("Saved!");
     }
 
     public void LoadCheckPoint(Player player) {
         player.transform.position = _position;
         player.weapon = _weapon;
-        Debug.Log("Loaded!");
+       // Debug.Log("Loaded!");
     }
 }

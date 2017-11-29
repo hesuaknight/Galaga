@@ -11,10 +11,10 @@ public class LifeController {
         if (currentLife - dmg <= 0) {
             currentLife = 0;
             OnDeadCallBack.Invoke();
-            Debug.Log("Dead");
+            //Debug.Log("Dead");
         } else {
             currentLife -= dmg;
-            Debug.Log("Take damaged :" + currentLife);
+            //Debug.Log("Take damaged :" + currentLife);
 
         }
     }

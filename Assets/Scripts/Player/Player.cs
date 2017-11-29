@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     private Weapon _weapon;
     public Weapon weapon { get { return _weapon; } set { _weapon = value; } }
 
+    public PlayerSubject _playerSubject;
     private CheckPoint _checkPoint;
 
     private void Awake() {
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
         //_controller = new KeyboardCtrl(this);
         _weapon = new WeaponStandard(_controller.fireKey, this.transform, 0.35f);
         _checkPoint = new CheckPoint(transform.position, _weapon);
+        _playerSubject = new PlayerSubject();
     }
 
     // Update is called once per frame
@@ -39,7 +41,19 @@ public class Player : MonoBehaviour {
     }
 
     public void LoadCheckPoint() {
+        _playerSubject.NotiffyAll();
         lifeController.RestoreLife();
         _checkPoint.LoadCheckPoint(this);
     }
 }
+
+
+
+
+
+
+
+
+
+
+//Cuando?

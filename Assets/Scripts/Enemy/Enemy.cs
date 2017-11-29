@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour {
         if (Random.value <= chanceAttack)
         {
             iFormation = new EnemyAttack();
-            Debug.Log("Ship Mode : Attack");
+            //Debug.Log("Ship Mode : Attack");
         }
         if (iFormation != null)
         {

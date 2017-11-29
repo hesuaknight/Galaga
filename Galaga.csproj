@@ -103,9 +103,12 @@
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameStatus.cs" />
     <Compile Include="Assets\Scripts\Level\Level.cs" />
+    <Compile Include="Assets\Scripts\Observer\Player\IPlayerObserver.cs" />
+    <Compile Include="Assets\Scripts\Observer\Player\PlayerSubject.cs" />
     <Compile Include="Assets\Scripts\Player\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Player\LifeController.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\Shield.cs" />
     <Compile Include="Assets\Scripts\Player\ShieldRoot.cs" />
     <Compile Include="Assets\Scripts\PoolObject\IPoolFactory.cs" />
     <Compile Include="Assets\Scripts\PoolObject\IPoolObject.cs" />

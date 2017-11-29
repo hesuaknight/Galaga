@@ -33,7 +33,7 @@ public class GridFormationRoot : MonoBehaviour {
                 gridEnemy[x, y].GetComponent<Enemy>().cordGrid = pos;
             }
         }
-        Debug.Log("Create Grid with Enemys");
+        //Debug.Log("Create Grid with Enemys");
     }
     void Update ()
     {

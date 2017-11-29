@@ -16,7 +16,11 @@ public class ShieldRoot : MonoBehaviour {
     private void Update()
     {
         transform.Rotate(0, rotationForce, 0 * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            ActiveNewShield();
     }
+
     public void ActiveNewShield()
     {
         for (int i = 0; i < shields.Count; i++)
