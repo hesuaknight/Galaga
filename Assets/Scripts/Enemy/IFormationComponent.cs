@@ -22,8 +22,9 @@ public class EnemyAttack : IFormationComponent
                 Time.deltaTime * 0.2f
                 );
         reference.transform.localPosition += reference.transform.up * reference.speedDisplacement * Time.deltaTime;
+        reference.Attack();
         //  reference.transform.position = new Vector3(reference.transform.position.x, 0, reference.transform.position.z);
-      //  reference.transform.rotation = new Quaternion(0, reference.transform.rotation.x, reference.transform.rotation.z,0);
+        //  reference.transform.rotation = new Quaternion(0, reference.transform.rotation.x, reference.transform.rotation.z,0);
     }
 }
 public class BackToGridPositionEnemy : IFormationComponent

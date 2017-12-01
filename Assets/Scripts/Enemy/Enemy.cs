@@ -17,7 +17,10 @@ public class Enemy : MonoBehaviour {
 
     [Header("Attack")]
     public EnemyWeapon weapon;
+    public Transform shootPoint;
     public float chanceAttack;
+    public float rateAttack;
+    private float _currentRateAttack;
     public int Damage = 1;
 
     [Header("Drop")]
@@ -38,6 +41,7 @@ public class Enemy : MonoBehaviour {
         //lifeController.OnDeadCallBack += GameManager.instance.EnemyDie;
         lifeController.OnDeadCallBack += Die;
         startRotation = transform.eulerAngles;
+        weapon = new EnemyWeapon(shootPoint, Constants.layerEnemy);
         StartCoroutine(RandomTarget());
     }
 
@@ -65,7 +69,7 @@ public class Enemy : MonoBehaviour {
         if (Random.value <= chanceAttack)
         {
             iFormation = new EnemyAttack();
-            //Debug.Log("Ship Mode : Attack");
+            Debug.Log("Ship Mode : Attack");
         }
         if (iFormation != null)
         {
@@ -83,7 +87,6 @@ public class Enemy : MonoBehaviour {
         }
 
     }
-
     
     IEnumerator RandomTarget()
     {
@@ -105,6 +108,15 @@ public class Enemy : MonoBehaviour {
     void Update ()
     {
         Logic();
+    }
+
+    public void Attack() {
+        _currentRateAttack += Time.deltaTime;
+        if (_currentRateAttack >= rateAttack)
+        {
+            _currentRateAttack = 0;
+            weapon.Shoot();
+        }
     }
 
     private void OnTriggerEnter(Collider c)

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
         //Debug.Log(gameStatus.enemyAliveCount);
 
         if (gameStatus.EnemyDie() == GameStatus.CurrentGameStatus.AllEnemyDead) {
+            if (winPanel.gameObject == null) return;
             winPanel.gameObject.SetActive(true);
             Time.timeScale = 0;
         }

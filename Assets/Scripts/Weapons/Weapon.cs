@@ -38,7 +38,7 @@ public abstract class Weapon {
 
     protected void PositionBullet(Bullet bullet) {
         bullet.transform.position = _spawnPoint.position;
-        bullet.transform.rotation = _spawnPoint.rotation;
+        bullet.transform.forward = _spawnPoint.forward;
         bullet.gameObject.layer = _shootLayer;
     }
 }

@@ -27,10 +27,16 @@ public class Bullet : MonoBehaviour, IPoolObject {
         {
             Destroy(c.gameObject);
         }
+        else if (c.transform.GetComponent<Player>())
+        {
+            c.transform.GetComponent<Player>().lifeController.TakeDamage(dmg);
+        }
         Weapon.poolObject.Release(this);
     }
 
     public void OnAdquiere() {
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.position = Vector3.zero;
         gameObject.SetActive(true);
     }
 
