@@ -40,6 +40,7 @@ public abstract class Weapon {
         bullet.transform.position = _spawnPoint.position;
         bullet.transform.forward = _spawnPoint.forward;
         bullet.gameObject.layer = _shootLayer;
+        bullet.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
     }
 }
 

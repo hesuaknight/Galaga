@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour, IPoolObject {
     public void OnAdquiere() {
         gameObject.transform.rotation = Quaternion.identity;
         gameObject.transform.position = Vector3.zero;
+        gameObject.GetComponent<Renderer>().material.color = Color.white;
         gameObject.SetActive(true);
     }
 

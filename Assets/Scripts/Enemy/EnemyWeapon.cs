@@ -17,8 +17,9 @@ public class EnemyWeapon {
     public void Shoot() {
         Bullet bullet = poolObject.Acquiere();
         bullet.transform.position = _shootPosition.position;
-        bullet.transform.forward = _shootPosition.forward;
-        //bullet.transform.forward = Vector3.down;
+        //bullet.transform.forward = _shootPosition.forward;
+        bullet.transform.forward = Vector3.down;
+        bullet.gameObject.GetComponent<Renderer>().material.color = Color.red;
         bullet.gameObject.layer = _shootLayer;
     }
 }
